@@ -10,6 +10,21 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     email,
     password
   };
+  try {
+      const createdUser = await createUser( newUser)
+
+      res.status(201).json({
+        id: createdUser.id,
+        email: createdUser.email,
+        message: "New user created"
+      })
+
+
+  } catch (err) {
+    console.error(err);
+    res.status(400).send(err.message);
+  }
+
 
   // please finish this function
 
